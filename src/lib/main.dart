@@ -36,12 +36,12 @@ class _RandomWordsState extends State<RandomWords> {
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(16.0),
-        itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return const Divider(); /*2*/
+        itemBuilder: (context, i) {
+          if (i.isOdd) return const Divider();
 
-          final index = i ~/ 2; /*3*/
+          final index = i ~/ 2;
           if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+            _suggestions.addAll(generateWordPairs().take(10));
           }
           return ListTile(
             title: Text(
