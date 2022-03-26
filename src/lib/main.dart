@@ -59,6 +59,7 @@ class _RandomWordsState extends State<RandomWords> {
           }
 
           final alredySaved = _saved.contains(_suggestions[index]);
+
           return ListTile(
             title: Text(
               _suggestions[index].asPascalCase,
