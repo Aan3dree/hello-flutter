@@ -36,6 +36,7 @@ class _RandomWordsState extends State<RandomWords> {
 
   @override
   Widget build(BuildContext context) {
+    HelloText();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Startup Name Generator"),
@@ -108,4 +109,33 @@ class _RandomWordsState extends State<RandomWords> {
       );
     }));
   }
+}
+
+class HelloText extends StatefulWidget {
+  const HelloText({Key? key}) : super(key: key);
+
+  @override
+  State<HelloText> createState() => _HelloTextState();
+}
+
+class _HelloTextState extends State<HelloText> {
+  String helloText = '';
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      TextField(
+        onChanged: (text) => sayHello(text),
+        controller: myController,
+      ),
+      Text(helloText)
+    ]);
+  }
+
+  void sayHello(String text) {
+    setState(() {
+      helloText = 'Hello' + text.toUpperCase() + '!';
+    });
+  }
+
+  final myController = TextEditingController();
 }
