@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import '../shared/drawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,6 +48,7 @@ class _RandomWordsState extends State<RandomWords> {
           )
         ],
       ),
+      drawer: MenuDrawer(),
       body: ListView.builder(
         padding: const EdgeInsets.all(16.0),
         itemBuilder: (context, i) {
