@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../screens/bmi.dart';
+import '../screens/intro.dart';
+import '../screens/names.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({Key? key}) : super(key: key);
@@ -15,7 +18,7 @@ class MenuDrawer extends StatelessWidget {
   List<Widget> buildMenuItems(BuildContext context) {
     final List<String> menuTiles = [
       'Home',
-      'Saved Suggestions',
+      'StartUp Names',
       'BMI Calculator',
       'Weather',
       'Training'
@@ -29,12 +32,28 @@ class MenuDrawer extends StatelessWidget {
       ),
     ));
     menuTiles.forEach((String element) {
+      Widget screen = Container();
       menuItems.add(ListTile(
         title: Text(
           element,
           style: TextStyle(fontSize: 18),
         ),
-        onTap: () {},
+        onTap: () {
+          switch (element) {
+            case 'Home':
+              screen = IntroScreen();
+              break;
+            case 'BMI Calculator':
+              screen = BmiScreen();
+              break;
+            case 'StartUp Names':
+              screen = RandomWords();
+              break;
+          }
+          Navigator.of(context).pop();
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => screen));
+        },
       ));
     });
     return menuItems;
