@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:hello_flutter/screens/bmi.dart';
+import '../screens/intro.dart';
 import '../screens/names.dart';
 import '../shared/drawer.dart';
 
@@ -19,7 +21,12 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       )),
-      home: RandomWords(),
+      routes: {
+        '/home': (context) => IntroScreen(),
+        '/bmi': (context) => BmiScreen()
+      },
+      initialRoute: '/home',
+      //home: IntroScreen(),
     );
   }
 }
