@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/weather.dart';
 import '../screens/bmi.dart';
 import '../screens/intro.dart';
 import '../screens/names.dart';
@@ -48,6 +49,9 @@ class MenuDrawer extends StatelessWidget {
               break;
             case 'StartUp Names':
               screen = RandomWords();
+              break;
+            case 'Weather':
+              screen = WeatherScreen();
               break;
           }
           Navigator.of(context).pop();
