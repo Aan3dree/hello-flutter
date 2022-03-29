@@ -15,6 +15,8 @@ src/lib/data/helper.dart
 lib/data/helper.dart
 /lib/data/helper.dart
 
+./android/app/google-services.json
+
 # IntelliJ related
 *.iml
 *.ipr

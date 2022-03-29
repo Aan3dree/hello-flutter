@@ -37,6 +37,7 @@ dependencies:
   english_words: ^4.0.0
   http: ^0.13.4
   shared_preferences: ^2.0.13
+  firebase_core: '0.7.0'
   
 dev_dependencies:
   flutter_test:

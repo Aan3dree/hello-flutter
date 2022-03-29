@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:hello_flutter/screens/bmi.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import '../screens/intro.dart';
 import '../screens/names.dart';
 import '../shared/drawer.dart';
