@@ -1,12 +1,15 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'session.dart';
 import 'dart:convert';
+import 'dart:async';
 
 class SPHelper {
   static late SharedPreferences prefs;
 
   Future init() async {
-    prefs = await SharedPreferences.getInstance();
+    final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+    //prefs = await SharedPreferences.getInstance();
+    prefs = await _prefs;
   }
 
   Future writeSession(Session session) async {
