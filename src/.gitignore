@@ -9,6 +9,12 @@
 .history
 .svn/
 
+./lib/data/helper.dart
+src/lib/data/helper.dart
+./src/lib/data/helper.dart
+lib/data/helper.dart
+/lib/data/helper.dart
+
 # IntelliJ related
 *.iml
 *.ipr
