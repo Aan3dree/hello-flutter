@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import '../data/session.dart';
 import '../data/sp.dart';
+import '../data/session.dart';
 
 class SessionsScreen extends StatefulWidget {
   const SessionsScreen({Key? key}) : super(key: key);
-
   @override
-  State<SessionsScreen> createState() => _SessionsScreenState();
+  _SessionsScreenState createState() => _SessionsScreenState();
 }
 
 class _SessionsScreenState extends State<SessionsScreen> {
@@ -17,7 +16,6 @@ class _SessionsScreenState extends State<SessionsScreen> {
 
   @override
   void initState() {
-    helper.init();
     helper.init().then((value) {
       updateScreen();
     });
@@ -28,55 +26,47 @@ class _SessionsScreenState extends State<SessionsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sessions'),
+        title: Text('Your Training Sessions'),
       ),
-      body: ListView(
-        children: getContent(),
-      ),
+      body: ListView(children: getContent()),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          showSessionDialog(context);
-        },
-      ),
+          child: Icon(Icons.add),
+          onPressed: () {
+            showSessionDialog(context);
+          }),
     );
   }
 
   Future<dynamic> showSessionDialog(BuildContext context) async {
     return showDialog(
         context: context,
-        builder: (BuildContext contex) {
+        builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Insert Training Session'),
-            content: SingleChildScrollView(
-              child: Column(
-                children: [
-                  TextField(
-                    controller: txtDescription,
-                    decoration: InputDecoration(hintText: 'Description'),
-                  ),
-                  TextField(
-                    controller: txtDuration,
-                    decoration: InputDecoration(hintText: 'Duration'),
-                  )
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(contex);
-                  txtDescription.text = '';
-                  txtDuration.text = '';
-                },
-                child: Text('Cancel'),
-              ),
-              ElevatedButton(
-                onPressed: saveSession,
-                child: Text('Save'),
-              )
-            ],
-          );
+              title: Text('Insert Training Session'),
+              content: SingleChildScrollView(
+                  child: Column(children: [
+                TextField(
+                  controller: txtDescription,
+                  decoration: InputDecoration(hintText: 'Description'),
+                ),
+                TextField(
+                  controller: txtDuration,
+                  decoration: InputDecoration(hintText: 'Duration'),
+                ),
+              ])),
+              actions: [
+                TextButton(
+                    child: Text('Cancel'),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      txtDescription.text = '';
+                      txtDuration.text = '';
+                    }),
+                ElevatedButton(
+                  child: Text('Save'),
+                  onPressed: saveSession,
+                ),
+              ]);
         });
   }
 
@@ -98,9 +88,15 @@ class _SessionsScreenState extends State<SessionsScreen> {
   List<Widget> getContent() {
     List<Widget> tiles = [];
     sessions.forEach((session) {
-      tiles.add(ListTile(
-        title: Text(session.description),
-        subtitle: Text('${session.date} - duration: ${session.duration} min'),
+      tiles.add(Dismissible(
+        key: UniqueKey(),
+        onDismissed: (_) {
+          helper.deleteSession(session.id).then((value) => updateScreen());
+        },
+        child: ListTile(
+          title: Text(session.description),
+          subtitle: Text('${session.date} - duration: ${session.duration} min'),
+        ),
       ));
     });
     return tiles;

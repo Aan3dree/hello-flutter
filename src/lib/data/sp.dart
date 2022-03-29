@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'session.dart';
 import 'dart:convert';
@@ -36,5 +34,9 @@ class SPHelper {
 
   int getCounter() {
     return prefs.getInt('counter') ?? 0;
+  }
+
+  Future deleteSession(int id) async {
+    prefs.remove(id.toString());
   }
 }
