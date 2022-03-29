@@ -18,4 +18,4 @@ class HttpHelper {
     Weather weather = Weather.fromJson(data);
     return weather;
   }
-}
+}//
