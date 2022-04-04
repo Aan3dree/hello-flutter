@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:hello_flutter/screens/bmi.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hello_flutter/screens/logi.dart';
+import 'firebase_options.dart';
 import '../screens/intro.dart';
 import '../screens/names.dart';
 import '../shared/drawer.dart';
 
 void main() {
+  /** 
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseAuth auth = FirebaseAuth.instance;
+*/
   runApp(const MyApp());
 }
 
@@ -24,11 +33,11 @@ class MyApp extends StatelessWidget {
         foregroundColor: Colors.black,
       )),
       routes: {
-        '/home': (context) => IntroScreen(),
+        '/home': (context) => SignInScreen(),
         '/bmi': (context) => BmiScreen()
       },
       initialRoute: '/home',
-      //home: IntroScreen(),
+      home: SignInScreen(),
     );
   }
 }

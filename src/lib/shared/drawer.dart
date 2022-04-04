@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hello_flutter/screens/sessions.dart';
+import 'package:hello_flutter/screens/user_info_screen.dart';
+import '../screens/user_info_screen.dart';
 import '../screens/weather.dart';
 import '../screens/bmi.dart';
 import '../screens/intro.dart';
 import '../screens/names.dart';
+import '../utils/auth.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({Key? key}) : super(key: key);
@@ -20,6 +24,7 @@ class MenuDrawer extends StatelessWidget {
   List<Widget> buildMenuItems(BuildContext context) {
     final List<String> menuTiles = [
       'Home',
+      'Profile',
       'StartUp Names',
       'BMI Calculator',
       'Weather',
@@ -45,6 +50,9 @@ class MenuDrawer extends StatelessWidget {
             case 'Home':
               screen = IntroScreen();
               break;
+            case 'Profile':
+              screen = IntroScreen();
+              break;
             case 'BMI Calculator':
               screen = BmiScreen();
               break;
@@ -59,6 +67,7 @@ class MenuDrawer extends StatelessWidget {
               break;
           }
           Navigator.of(context).pop();
+
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => screen));
         },
