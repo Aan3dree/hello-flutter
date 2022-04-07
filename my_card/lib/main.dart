@@ -12,14 +12,34 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
-          child: Container(
-            color: Colors.green,
-            height: 100,
-            width: 100,
-            margin: EdgeInsets.all(20),
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            child: Text("Dale men"),
-          ),
+          child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  color: Colors.red,
+                  width: 100,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      color: Colors.yellow,
+                      height: 100,
+                      width: 100,
+                    ),
+                    Container(
+                      color: Colors.yellow.withOpacity(0.5),
+                      height: 100,
+                      width: 100,
+                    )
+                  ],
+                ),
+                Container(
+                  color: Colors.blue,
+                  width: 100,
+                )
+              ]),
         ),
         backgroundColor: Colors.teal,
       ),
