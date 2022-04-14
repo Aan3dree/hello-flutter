@@ -35,50 +35,38 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2.5),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-              padding: EdgeInsets.all(10),
-              color: Colors.white,
-              child: Row(
-                children: [
-                  Icon(
+            Card(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                color: Colors.white,
+                child: ListTile(
+                  leading: Icon(
                     Icons.phone,
                     color: Colors.teal,
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
+                  title: Text(
                     '+55 81 979036346',
                     style: TextStyle(
                         fontFamily: 'Fira Sans',
                         fontSize: 18,
                         color: Colors.teal),
                   ),
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-              padding: EdgeInsets.all(10),
-              color: Colors.white,
-              child: Row(children: [
-                Icon(
-                  Icons.email,
-                  color: Colors.teal,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'an3dree@gmail.com',
-                  style: TextStyle(
-                      fontFamily: 'Fira Sans',
-                      fontSize: 18,
-                      color: Colors.teal),
-                ),
-              ]),
-            ),
+                )),
+            Card(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                color: Colors.white,
+                child: ListTile(
+                  leading: Icon(
+                    Icons.email,
+                    color: Colors.teal,
+                  ),
+                  title: Text(
+                    'an3dree@gmail.com',
+                    style: TextStyle(
+                        fontFamily: 'Fira Sans',
+                        fontSize: 18,
+                        color: Colors.teal),
+                  ),
+                )),
           ],
         )),
         backgroundColor: Colors.teal,
