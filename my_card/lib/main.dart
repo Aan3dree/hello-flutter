@@ -12,63 +12,70 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
-            child: Column(
-          children: [
-            CircleAvatar(
-                radius: 50.0,
-                backgroundColor: Colors.blue,
-                backgroundImage: AssetImage('images/euq.jpg')),
-            Text(
-              'André Souza',
-              style: TextStyle(
-                  fontSize: 50.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Square Peg'),
-            ),
-            Text(
-              'SharePoint Analyst',
-              style: TextStyle(
-                  fontFamily: 'Fira Sans',
-                  fontSize: 20.0,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                  radius: 50.0,
+                  backgroundColor: Colors.blue,
+                  backgroundImage: AssetImage('images/euq.jpg')),
+              Text(
+                'André Souza',
+                style: TextStyle(
+                    fontSize: 50.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Square Peg'),
+              ),
+              Text(
+                'SharePoint Analyst',
+                style: TextStyle(
+                    fontFamily: 'Fira Sans',
+                    fontSize: 20.0,
+                    color: Colors.teal.shade100,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2.5),
+              ),
+              SizedBox(
+                width: 150,
+                height: 25,
+                child: Divider(
                   color: Colors.teal.shade100,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 2.5),
-            ),
-            Card(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                color: Colors.white,
-                child: ListTile(
-                  leading: Icon(
-                    Icons.phone,
-                    color: Colors.teal,
-                  ),
-                  title: Text(
-                    '+55 81 979036346',
-                    style: TextStyle(
-                        fontFamily: 'Fira Sans',
-                        fontSize: 18,
-                        color: Colors.teal),
-                  ),
-                )),
-            Card(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                color: Colors.white,
-                child: ListTile(
-                  leading: Icon(
-                    Icons.email,
-                    color: Colors.teal,
-                  ),
-                  title: Text(
-                    'an3dree@gmail.com',
-                    style: TextStyle(
-                        fontFamily: 'Fira Sans',
-                        fontSize: 18,
-                        color: Colors.teal),
-                  ),
-                )),
-          ],
-        )),
+                ),
+              ),
+              Card(
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.phone,
+                      color: Colors.teal,
+                    ),
+                    title: Text(
+                      '+55 81 979036346',
+                      style: TextStyle(
+                          fontFamily: 'Fira Sans',
+                          fontSize: 18,
+                          color: Colors.teal),
+                    ),
+                  )),
+              Card(
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.email,
+                      color: Colors.teal,
+                    ),
+                    title: Text(
+                      'an3dree@gmail.com',
+                      style: TextStyle(
+                          fontFamily: 'Fira Sans',
+                          fontSize: 18,
+                          color: Colors.teal),
+                    ),
+                  )),
+            ],
+          ),
+        ),
         backgroundColor: Colors.teal,
       ),
     );
