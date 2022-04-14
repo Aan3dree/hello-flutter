@@ -15,17 +15,69 @@ class MyApp extends StatelessWidget {
             child: Column(
           children: [
             CircleAvatar(
-              radius: 50.0,
-              backgroundColor: Colors.blue,
-              backgroundImage: NetworkImage(
-                  'https://media-exp1.licdn.com/dms/image/C4D03AQH1328ONMc2eQ/profile-displayphoto-shrink_200_200/0/1626192148646?e=1655337600&v=beta&t=RZPt9QqH5kLk6DVxu9PziJwi6W8y13tS1T0lEtNZPDY'),
-            ),
+                radius: 50.0,
+                backgroundColor: Colors.blue,
+                backgroundImage: AssetImage('images/euq.jpg')),
             Text(
               'André Souza',
               style: TextStyle(
-                  fontSize: 36.0,
+                  fontSize: 50.0,
                   color: Colors.white,
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Square Peg'),
+            ),
+            Text(
+              'SharePoint Analyst',
+              style: TextStyle(
+                  fontFamily: 'Fira Sans',
+                  fontSize: 20.0,
+                  color: Colors.teal.shade100,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2.5),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+              padding: EdgeInsets.all(10),
+              color: Colors.white,
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.phone,
+                    color: Colors.teal,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    '+55 81 979036346',
+                    style: TextStyle(
+                        fontFamily: 'Fira Sans',
+                        fontSize: 18,
+                        color: Colors.teal),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+              padding: EdgeInsets.all(10),
+              color: Colors.white,
+              child: Row(children: [
+                Icon(
+                  Icons.email,
+                  color: Colors.teal,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'an3dree@gmail.com',
+                  style: TextStyle(
+                      fontFamily: 'Fira Sans',
+                      fontSize: 18,
+                      color: Colors.teal),
+                ),
+              ]),
             ),
           ],
         )),
