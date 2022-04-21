@@ -4,12 +4,23 @@ void main() {
   runApp(const MyApp());
 }
 
-class Dice extends StatelessWidget {
-  const Dice({Key? key}) : super(key: key);
+class DicePage extends StatelessWidget {
+  const DicePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Row(
+      children: [
+        Expanded(
+          child: Image.asset('images/dice1.png'),
+          flex: 1,
+        ),
+        Expanded(
+          child: Image.asset('images/dice1.png'),
+          flex: 1,
+        ),
+      ],
+    );
   }
 }
 
@@ -20,11 +31,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Dice',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Dice(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Dice'),
+        ),
+        body: const DicePage(),
+      ),
     );
   }
 }
