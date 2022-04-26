@@ -25,6 +25,19 @@ class XylophoneApp extends StatelessWidget {
     );
   }
 
+  //another method to do the same thing
+  Expanded buildButton(int soundNumber, Color color) {
+    return Expanded(
+      child: TextButton(
+        style: TextButton.styleFrom(backgroundColor: color),
+        onPressed: () {
+          playSound(soundNumber);
+        },
+        child: const Text(''),
+      ),
+    );
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
