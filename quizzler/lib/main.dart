@@ -28,6 +28,17 @@ class QuizzlerPage extends StatefulWidget {
 }
 
 class _QuizzlerPageState extends State<QuizzlerPage> {
+  List<Icon> scoreKeeper = [];
+
+  Icon trueButton = const Icon(
+    Icons.check,
+    color: Colors.green,
+  );
+  Icon falseButton = const Icon(
+    Icons.close,
+    color: Colors.red,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +53,7 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
               padding: EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  'This is where the question text will go',
+                  'questions[1]',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
@@ -54,7 +65,11 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
               padding: const EdgeInsets.all(15.0),
               child: TextButton(
                 style: TextButton.styleFrom(backgroundColor: Colors.green),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    scoreKeeper.add(trueButton);
+                  });
+                },
                 child: const Text(
                   'True',
                   style: TextStyle(
@@ -70,7 +85,11 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
               padding: const EdgeInsets.all(15.0),
               child: TextButton(
                 style: TextButton.styleFrom(backgroundColor: Colors.red),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    scoreKeeper.add(falseButton);
+                  });
+                },
                 child: const Text(
                   'False',
                   style: TextStyle(
@@ -81,6 +100,7 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
               ),
             ),
           ),
+          Row(children: scoreKeeper),
         ],
       ),
     );
