@@ -40,60 +40,12 @@ class XylophoneApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               xyloButon(1, Colors.red),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.orange),
-                  onPressed: () {
-                    playSound(2);
-                  },
-                  child: const SizedBox(),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.yellow),
-                  onPressed: () {
-                    playSound(3);
-                  },
-                  child: const SizedBox(),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.green),
-                  onPressed: () {
-                    playSound(4);
-                  },
-                  child: const SizedBox(),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.teal),
-                  onPressed: () {
-                    playSound(5);
-                  },
-                  child: const SizedBox(),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.blue),
-                  onPressed: () {
-                    playSound(6);
-                  },
-                  child: const SizedBox(),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.purple),
-                  onPressed: () {
-                    playSound(7);
-                  },
-                  child: const SizedBox(),
-                ),
-              ),
+              xyloButon(2, Colors.orange),
+              xyloButon(3, Colors.yellow),
+              xyloButon(4, Colors.green),
+              xyloButon(5, Colors.teal),
+              xyloButon(6, Colors.blue),
+              xyloButon(7, Colors.purple),
             ],
           ),
         ),
