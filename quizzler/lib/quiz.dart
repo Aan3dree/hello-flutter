@@ -44,4 +44,20 @@ class Quiz {
   bool getQuestionAnswer() {
     return _questionsList[_questionNumber].questionAnswer;
   }
+
+  bool isFinished() {
+    if (_questionNumber == _questionsList.length - 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void reset() {
+    _questionNumber = 0;
+  }
+
+  void printEnd() {
+    print(isFinished());
+  }
 }
