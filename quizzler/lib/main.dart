@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'quiz.dart';
 
 Quiz quizBrain = Quiz();
@@ -42,6 +43,27 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
     color: Colors.red,
   );
 
+  void checkAnswer(bool userInput) {
+    bool answer = quizBrain.getQuestionAnswer();
+    setState(() {
+      quizBrain.printEnd();
+      if (quizBrain.isFinished()) {
+        Alert(context: context, title: "Quizzler", desc: "The Quiz is end.")
+            .show();
+        quizBrain.reset();
+        scoreKeeper = [];
+      } else {
+        if (userInput == answer) {
+          scoreKeeper.add(trueButton);
+        } else {
+          scoreKeeper.add(falseButton);
+        }
+
+        quizBrain.nextQuestion();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,13 +91,7 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
               child: TextButton(
                 style: TextButton.styleFrom(backgroundColor: Colors.green),
                 onPressed: () {
-                  bool answer = quizBrain.getQuestionAnswer();
-                  if (answer == true) {
-                    setState(() {});
-                  } else {
-                    setState(() {});
-                  }
-                  quizBrain.nextQuestion();
+                  checkAnswer(true);
                 },
                 child: const Text(
                   'True',
@@ -93,13 +109,7 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
               child: TextButton(
                 style: TextButton.styleFrom(backgroundColor: Colors.red),
                 onPressed: () {
-                  bool answer = quizBrain.getQuestionAnswer();
-                  if (answer == false) {
-                    setState(() {});
-                  } else {
-                    setState(() {});
-                  }
-                  quizBrain.nextQuestion();
+                  checkAnswer(false);
                 },
                 child: const Text(
                   'False',
