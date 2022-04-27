@@ -40,18 +40,6 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
     color: Colors.red,
   );
 
-  List<String> questions = [
-    "What's the sense of the life'",
-    'Programing is good',
-    'A slug\'s blood is green', //true
-    'You can lead a cow down stairs but not up stairs',
-    'Approximately one quarter of human bones are in the feet',
-    '',
-    '',
-    '',
-    '',
-  ];
-
   Question q1 = Question('What\'s the sense of the life', false);
 
   List<Question> questionsList = [
@@ -61,8 +49,6 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
     Question('You can lead a cow down stairs but not up stairs', false),
     Question('Approximately one quarter of human bones are in the feet', false)
   ];
-
-  List<bool> answers = [false, true, true, false, false];
 
   int questionNumber = 0;
 
