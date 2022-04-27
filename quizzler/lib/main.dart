@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import 'quiz.dart';
+
+Quiz quizBrain = Quiz();
 
 void main() {
   runApp(const QuizzlerApp());
@@ -40,18 +42,6 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
     color: Colors.red,
   );
 
-  Question q1 = Question('What\'s the sense of the life', false);
-
-  List<Question> questionsList = [
-    Question('What\'s the sense of the life', false),
-    Question('Programing is good', true),
-    Question('A slug\'s blood is green', true),
-    Question('You can lead a cow down stairs but not up stairs', false),
-    Question('Approximately one quarter of human bones are in the feet', false)
-  ];
-
-  int questionNumber = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +56,7 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
               padding: EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  questionsList[questionNumber].questionText,
+                  quizBrain.getQuestionText(),
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
@@ -79,19 +69,13 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
               child: TextButton(
                 style: TextButton.styleFrom(backgroundColor: Colors.green),
                 onPressed: () {
-                  bool answer = questionsList[questionNumber].questionAnswer;
+                  bool answer = quizBrain.getQuestionAnswer();
                   if (answer == true) {
-                    setState(() {
-                      scoreKeeper.add(trueButton);
-                    });
+                    setState(() {});
                   } else {
-                    setState(() {
-                      scoreKeeper.add(falseButton);
-                    });
+                    setState(() {});
                   }
-                  setState(() {
-                    questionNumber++;
-                  });
+                  quizBrain.nextQuestion();
                 },
                 child: const Text(
                   'True',
@@ -109,17 +93,13 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
               child: TextButton(
                 style: TextButton.styleFrom(backgroundColor: Colors.red),
                 onPressed: () {
-                  bool answer = questionsList[questionNumber].questionAnswer;
+                  bool answer = quizBrain.getQuestionAnswer();
                   if (answer == false) {
-                    setState(() {
-                      scoreKeeper.add(trueButton);
-                    });
+                    setState(() {});
                   } else {
-                    scoreKeeper.add(falseButton);
+                    setState(() {});
                   }
-                  setState(() {
-                    questionNumber++;
-                  });
+                  quizBrain.nextQuestion();
                 },
                 child: const Text(
                   'False',
