@@ -4,6 +4,7 @@ class ReuseCard extends StatelessWidget {
   final Color customColor;
   final Widget cardChild;
   ReuseCard(@required this.customColor, this.cardChild);
+
   @override
   Widget build(BuildContext context) {
     return Container(
