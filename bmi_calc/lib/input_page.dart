@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reuse_card.dart';
 import 'icon_content.dart';
+import 'constants.dart';
 
-const bottomContainerHeight = 80;
-const customBackgroundColor = Color(0xFF0F1332);
-const activeColor = Color(0xFF1D1E33);
-const inactiveColor = Color(0xFF111328);
-const bottomContainerCOlor = Color(0xFFEB1555);
+bool cardIsActive = false;
+
+enum EGender { male, female, none }
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -17,24 +16,26 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveColor;
-  Color femaleCardColor = inactiveColor;
+  Color maleCardColor = kInactiveColor;
+  Color femaleCardColor = kInactiveColor;
+  EGender selectedGender = EGender.none;
+  int height = 166;
 
-  void updateColor(int gender) {
+  void updateColor(EGender gender) {
     setState(() {
-      if (gender == 1) {
-        if (maleCardColor == inactiveColor) {
-          maleCardColor = activeColor;
-          femaleCardColor = inactiveColor;
+      if (gender == EGender.male) {
+        if (maleCardColor == kInactiveColor) {
+          maleCardColor = kActiveColor;
+          femaleCardColor = kInactiveColor;
         } else {
-          maleCardColor = inactiveColor;
+          maleCardColor = kInactiveColor;
         }
-      } else if (gender == 2) {
-        if (femaleCardColor == inactiveColor) {
-          femaleCardColor = activeColor;
-          maleCardColor = inactiveColor;
+      } else if (gender == EGender.female) {
+        if (femaleCardColor == kInactiveColor) {
+          femaleCardColor = kActiveColor;
+          maleCardColor = kInactiveColor;
         } else {
-          femaleCardColor = inactiveColor;
+          femaleCardColor = kInactiveColor;
         }
       }
     });
@@ -45,9 +46,10 @@ class _InputPageState extends State<InputPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('BMI Calc'),
-        backgroundColor: customBackgroundColor,
+        backgroundColor: kCustomBackgroundColor,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -56,10 +58,15 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       print('male clicked');
-                      updateColor(1);
+                      //updateColor(EGender.male);
+                      setState(() {
+                        selectedGender = EGender.male;
+                      });
                     },
                     child: ReuseCard(
-                      maleCardColor,
+                      selectedGender == EGender.male
+                          ? kActiveColor
+                          : kInactiveColor,
                       IconContent(FontAwesomeIcons.mars, 'MALE'),
                     ),
                   ),
@@ -68,11 +75,16 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       print('famale clicked');
-                      updateColor(2);
+                      //updateColor(EGender.female);
+                      setState(() {
+                        selectedGender = EGender.female;
+                      });
                     },
                     child: ReuseCard(
-                      femaleCardColor,
-                      IconContent(FontAwesomeIcons.venus, 'FAMELA'),
+                      selectedGender == EGender.female
+                          ? kActiveColor
+                          : kInactiveColor,
+                      IconContent(FontAwesomeIcons.venus, 'FEMALE'),
                     ),
                   ),
                 ),
@@ -81,10 +93,40 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReuseCard(
-              activeColor,
-              Row(
+              kActiveColor,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.man),
+                  Text(
+                    'HEIGHT',
+                    style: kTextStyles,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: kNumberStyles,
+                      ),
+                      Text(
+                        'cm',
+                        style: kTextStyles,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                      activeColor: Color(0xFFEB1555),
+                      inactiveColor: Color(0xFF8D8E98),
+                      value: height.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                      onChanged: (double newHeight) {
+                        setState(() {
+                          height = newHeight.round();
+                        });
+                      }),
                 ],
               ),
             ),
@@ -94,12 +136,12 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                     child: ReuseCard(
-                  activeColor,
+                  kActiveColor,
                   IconContent(FontAwesomeIcons.mars, 'MALE'),
                 )),
                 Expanded(
                     child: ReuseCard(
-                  activeColor,
+                  kActiveColor,
                   IconContent(FontAwesomeIcons.mars, 'MALE'),
                 )),
               ],
