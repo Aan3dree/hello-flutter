@@ -20,6 +20,8 @@ class _InputPageState extends State<InputPage> {
   Color femaleCardColor = kInactiveColor;
   EGender selectedGender = EGender.none;
   int height = 166;
+  int weight = 66;
+  int age = 26;
 
   void updateColor(EGender gender) {
     setState(() {
@@ -39,6 +41,12 @@ class _InputPageState extends State<InputPage> {
         }
       }
     });
+  }
+
+  void onAddTap() {}
+
+  void onMinusTap() {
+    print('minus tap');
   }
 
   @override
@@ -116,17 +124,26 @@ class _InputPageState extends State<InputPage> {
                       ),
                     ],
                   ),
-                  Slider(
-                      activeColor: Color(0xFFEB1555),
-                      inactiveColor: Color(0xFF8D8E98),
-                      value: height.toDouble(),
-                      min: 120.0,
-                      max: 220.0,
-                      onChanged: (double newHeight) {
-                        setState(() {
-                          height = newHeight.round();
-                        });
-                      }),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                        activeTrackColor: Colors.white,
+                        inactiveTrackColor: Color(0xFF8D8E98),
+                        thumbColor: Color(0xFFEB1555),
+                        overlayColor: Color(0x29EB1555),
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 15),
+                        overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 30)),
+                    child: Slider(
+                        value: height.toDouble(),
+                        min: 120.0,
+                        max: 220.0,
+                        onChanged: (double newHeight) {
+                          setState(() {
+                            height = newHeight.round();
+                          });
+                        }),
+                  ),
                 ],
               ),
             ),
@@ -135,20 +152,113 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                    child: ReuseCard(
-                  kActiveColor,
-                  IconContent(FontAwesomeIcons.mars, 'MALE'),
-                )),
+                  child: ReuseCard(
+                    kActiveColor,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('WEIGHT', style: kTextStyles),
+                        Text(
+                          weight.toString(),
+                          style: kNumberStyles,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onTap: () {
+                                print('minus');
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onTap: () {
+                                print('plus');
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
                 Expanded(
-                    child: ReuseCard(
-                  kActiveColor,
-                  IconContent(FontAwesomeIcons.mars, 'MALE'),
-                )),
+                  child: ReuseCard(
+                    kActiveColor,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: kTextStyles,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberStyles,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onTap: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                }),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            RoundedIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onTap: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                })
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class RoundedIconButton extends StatelessWidget {
+  const RoundedIconButton({Key? key, required this.icon, required this.onTap})
+      : super(key: key);
+  //RoundedIconButton(this.icon, this.onTap);
+  final IconData icon;
+  final VoidCallback onTap;
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: onTap,
+      child: Icon(icon),
+      shape: CircleBorder(),
+      elevation: 6,
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      fillColor: Color(0xFF4C4F5E),
     );
   }
 }
