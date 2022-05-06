@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reuse_card.dart';
 import 'icon_content.dart';
+import 'round_icon_button.dart';
 import 'constants.dart';
 
 bool cardIsActive = false;
@@ -63,7 +64,7 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
+                  child: ReuseCard(
                     onTap: () {
                       print('male clicked');
                       //updateColor(EGender.male);
@@ -71,16 +72,15 @@ class _InputPageState extends State<InputPage> {
                         selectedGender = EGender.male;
                       });
                     },
-                    child: ReuseCard(
-                      selectedGender == EGender.male
-                          ? kActiveColor
-                          : kInactiveColor,
-                      IconContent(FontAwesomeIcons.mars, 'MALE'),
-                    ),
+                    customColor: selectedGender == EGender.male
+                        ? kActiveColor
+                        : kInactiveColor,
+                    cardChild: const IconContent(
+                        cardIcon: FontAwesomeIcons.mars, cardText: 'MALE'),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
+                  child: ReuseCard(
                     onTap: () {
                       print('famale clicked');
                       //updateColor(EGender.female);
@@ -88,12 +88,11 @@ class _InputPageState extends State<InputPage> {
                         selectedGender = EGender.female;
                       });
                     },
-                    child: ReuseCard(
-                      selectedGender == EGender.female
-                          ? kActiveColor
-                          : kInactiveColor,
-                      IconContent(FontAwesomeIcons.venus, 'FEMALE'),
-                    ),
+                    customColor: selectedGender == EGender.female
+                        ? kActiveColor
+                        : kInactiveColor,
+                    cardChild: const IconContent(
+                        cardIcon: FontAwesomeIcons.venus, cardText: 'FEMALE'),
                   ),
                 ),
               ],
@@ -101,8 +100,9 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReuseCard(
-              kActiveColor,
-              Column(
+              onTap: () {},
+              customColor: kActiveColor,
+              cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -153,8 +153,9 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReuseCard(
-                    kActiveColor,
-                    Column(
+                    onTap: () {},
+                    customColor: kActiveColor,
+                    cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('WEIGHT', style: kTextStyles),
@@ -187,15 +188,16 @@ class _InputPageState extends State<InputPage> {
                               },
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
                 Expanded(
                   child: ReuseCard(
-                    kActiveColor,
-                    Column(
+                    onTap: () {},
+                    customColor: kActiveColor,
+                    cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
@@ -235,30 +237,14 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
+          Container(
+            color: kBottomContainerColor,
+            margin: EdgeInsets.only(top: 10),
+            height: kBottomContainerHeight.toDouble(),
+            width: double.infinity,
+          ),
         ],
       ),
-    );
-  }
-}
-
-class RoundedIconButton extends StatelessWidget {
-  const RoundedIconButton({Key? key, required this.icon, required this.onTap})
-      : super(key: key);
-  //RoundedIconButton(this.icon, this.onTap);
-  final IconData icon;
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: onTap,
-      child: Icon(icon),
-      shape: CircleBorder(),
-      elevation: 6,
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      fillColor: Color(0xFF4C4F5E),
     );
   }
 }

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class IconContent extends StatelessWidget {
-  IconContent(this.cardIcon, this.cardText);
+  const IconContent({Key? key, this.cardIcon = Icons.add, this.cardText = ""})
+      : super(key: key);
 
   final IconData cardIcon;
   final String cardText;
