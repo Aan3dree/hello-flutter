@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'reuse_card.dart';
-import 'icon_content.dart';
-import 'round_icon_button.dart';
-import 'constants.dart';
+import '../components/reuse_card.dart';
+import '../components/icon_content.dart';
+import '../components/round_icon_button.dart';
+import '../constants.dart';
 import 'result_screen.dart';
-import 'bottom_buttom.dart';
+import '../components/bottom_buttom.dart';
 
 bool cardIsActive = false;
 
