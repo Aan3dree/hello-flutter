@@ -4,6 +4,8 @@ import 'reuse_card.dart';
 import 'icon_content.dart';
 import 'round_icon_button.dart';
 import 'constants.dart';
+import 'result_screen.dart';
+import 'bottom_buttom.dart';
 
 bool cardIsActive = false;
 
@@ -189,6 +191,9 @@ class _InputPageState extends State<InputPage> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 5,
+                        ),
                       ],
                     ),
                   ),
@@ -229,7 +234,10 @@ class _InputPageState extends State<InputPage> {
                                   });
                                 })
                           ],
-                        )
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
                       ],
                     ),
                   ),
@@ -237,12 +245,17 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColor,
-            margin: EdgeInsets.only(top: 10),
-            height: kBottomContainerHeight.toDouble(),
-            width: double.infinity,
-          ),
+          BottomButton(
+            buttonText: 'CALCULATE',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: ((context) => ResultScreen()),
+                ),
+              );
+            },
+          )
         ],
       ),
     );
