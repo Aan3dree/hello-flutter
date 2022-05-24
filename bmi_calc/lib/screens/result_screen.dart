@@ -5,7 +5,16 @@ import '../constants.dart';
 import '../components/bottom_buttom.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({Key? key}) : super(key: key);
+  const ResultScreen(
+      {Key? key,
+      required this.bmi,
+      required this.interpretation,
+      required this.category})
+      : super(key: key);
+
+  final String bmi;
+  final String category;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +40,16 @@ class ResultScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'RESULT SUBTITLE',
+                          category,
                           style: kResultSubtitle,
                         ),
                         Text(
-                          'XXX',
+                          bmi,
                           style: kResultValue,
                         ),
-                        Text('Result Text'),
+                        Text(
+                          interpretation,
+                        ),
                       ]),
                   onTap: () {}),
             ),
