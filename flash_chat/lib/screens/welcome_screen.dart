@@ -2,6 +2,7 @@ import 'package:flash_chat/components/button.dart';
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -29,7 +30,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     controller.forward();
     controller.addListener(() {
       setState(() {});
-      print(animation.value);
+      //print(animation.value);
     });
   }
 
@@ -54,16 +55,20 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 Hero(
                   tag: 'logo',
                   child: Container(
-                    child: Image.asset('images/logo.png'),
-                    height: animation.value * 100,
-                  ),
+                      child: Image.asset('images/logo.png'),
+                      height: 60 //animation.value * 100,
+                      ),
                 ),
-                Text(
-                  'Flash Chat',
-                  style: TextStyle(
-                      fontSize: 45.0,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.black45),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      'Flash Chat',
+                      textStyle: TextStyle(
+                          fontSize: 45.0,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.black45),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -71,7 +76,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               height: 48.0,
             ),
             MyButton(
-              color: Colors.blue,
+              color: Colors.lightBlueAccent,
               text: 'Log In',
               onPress: () {
                 Navigator.pushNamed(context, LoginScreen.id);
