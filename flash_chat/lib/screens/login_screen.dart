@@ -1,6 +1,7 @@
 import 'package:flash_chat/components/button.dart';
+import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import '../constants.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -10,6 +11,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late String email;
+  late String password;
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +35,11 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 40.0,
             ),
             TextField(
+              keyboardType: TextInputType.emailAddress,
+              textAlign: TextAlign.center,
               style: TextStyle(color: Colors.black),
               onChanged: (value) {
-                //Do something with the user input.
+                email = value;
               },
               decoration:
                   kInputDecoration.copyWith(hintText: 'Enter your Email'),
@@ -42,9 +48,11 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 8.0,
             ),
             TextField(
+              obscureText: true,
+              textAlign: TextAlign.center,
               style: TextStyle(color: Colors.black),
               onChanged: (value) {
-                //Do something with the user input.
+                password = value;
               },
               decoration:
                   kInputDecoration.copyWith(hintText: 'Enter your password'),
@@ -52,7 +60,20 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 15.0,
             ),
-            MyButton(color: Colors.blueAccent, text: 'Log in', onPress: () {}),
+            MyButton(
+                color: Colors.blueAccent,
+                text: 'Log in',
+                onPress: () async {
+                  try {
+                    final user = await _auth.signInWithEmailAndPassword(
+                        email: email, password: password);
+                    if (user != null) {
+                      Navigator.popAndPushNamed(context, ChatScreen.id);
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
+                }),
           ],
         ),
       ),
